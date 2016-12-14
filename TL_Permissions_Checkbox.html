@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<ul>
+    <li>
+        <input id="1" type="checkbox" onclick="checkbox('parent','1',this);" name="permissions" value="1">父类1
+        <ul>
+            <li><input class="1" type="checkbox" onclick="checkbox('sub','1',this);" name="permissions" value="7">子类7</li>
+            <li><input class="1" type="checkbox" onclick="checkbox('sub','1',this);" name="permissions" value="8">子类8</li>
+            <li><input class="1" type="checkbox" onclick="checkbox('sub','1',this);" name="permissions" value="9">子类9</li>
+            <li><input class="1" type="checkbox" onclick="checkbox('sub','1',this);" name="permissions" value="10">子类10</li>
+        </ul>
+    </li>
+    <li>
+        <input id="2" type="checkbox" onclick="checkbox('parent','2',this);" name="permissions" value="2">父类2
+        <ul>
+            <li><input class="2" type="checkbox" onclick="checkbox('sub','2',this);" name="permissions" value="11">子类11</li>
+            <li><input class="2" type="checkbox" onclick="checkbox('sub','2',this);" name="permissions" value="12">子类12</li>
+            <li><input class="2" type="checkbox" onclick="checkbox('sub','2',this);" name="permissions" value="13">子类13</li>
+            <li><input class="2" type="checkbox" onclick="checkbox('sub','2',this);" name="permissions" value="14">子类14</li>
+        </ul>
+    </li>
+    <li>
+        <input id="3" type="checkbox" onclick="checkbox('parent','3',this);" name="parent" value="3">父类3
+        <ul>
+            <li><input class="3" type="checkbox" onclick="checkbox('sub','3',this);" name="permissions" value="15">子类15</li>
+            <li><input class="3" type="checkbox" onclick="checkbox('sub','3',this);" name="permissions" value="16">子类16</li>
+            <li><input class="3" type="checkbox" onclick="checkbox('sub','3',this);" name="permissions" value="17">子类17</li>
+            <li><input class="3" type="checkbox" onclick="checkbox('sub','3',this);" name="permissions" value="18">子类18</li>
+        </ul>
+    </li>
+    <li>
+        <input id="4" type="checkbox" onclick="checkbox('parent','4',this);" name="permissions" value="4">父类4
+        <ul>
+            <li><input class="4" type="checkbox" onclick="checkbox('sub','4',this);" name="permissions" value="19">子类19</li>
+            <li><input class="4" type="checkbox" onclick="checkbox('sub','4',this);" name="permissions" value="20">子类20</li>
+            <li><input class="4" type="checkbox" onclick="checkbox('sub','4',this);" name="permissions" value="21">子类21</li>
+            <li><input class="4" type="checkbox" onclick="checkbox('sub','4',this);" name="permissions" value="22">子类22</li>
+        </ul>
+    </li>
+    <li>
+        <input id="5" type="checkbox" onclick="checkbox('parent','5',this);" name="permissions" value="5">父类5
+        <ul>
+            <li><input class="5" type="checkbox" onclick="checkbox('sub','5',this);" name="permissions" value="23">子类23</li>
+            <li><input class="5" type="checkbox" onclick="checkbox('sub','5',this);" name="permissions" value="24">子类24</li>
+            <li><input class="5" type="checkbox" onclick="checkbox('sub','5',this);" name="permissions" value="25">子类25</li>
+            <li><input class="5" type="checkbox" onclick="checkbox('sub','5',this);" name="permissions" value="26">子类26</li>
+        </ul>
+    </li>
+    <li>
+        <input id="6" type="checkbox" onclick="checkbox('parent','6',this);" name="permissions" value="6">父类6
+        <ul>
+            <li><input class="6" type="checkbox" onclick="checkbox('sub','6',this);" name="permissions" value="27">子类27</li>
+            <li><input class="6" type="checkbox" onclick="checkbox('sub','6',this);" name="permissions" value="28">子类28</li>
+            <li><input class="6" type="checkbox" onclick="checkbox('sub','6',this);" name="permissions" value="29">子类29</li>
+            <li><input class="6" type="checkbox" onclick="checkbox('sub','6',this);" name="permissions" value="30">子类30</li>
+        </ul>
+    </li>
+</ul>
+<input id="checkbox">
+<script>
+    function checkbox(parentorsub,id,item){
+        var ClassName = document.getElementsByClassName(id);
+        if(parentorsub=='parent'){
+            if(!document.getElementById(id).checked){
+                for (var Class=0;Class<ClassName.length;Class++){
+                    if(ClassName[Class].checked == true){
+                        ClassName[Class].checked = false;
+                    }
+                }
+            }else{
+                for (var Class1=0;Class1<ClassName.length;Class1++){
+                    if(ClassName[Class1].checked != true){
+                        ClassName[Class1].checked=true;
+                    }
+                }
+            }
+        }
+
+        if(parentorsub=='sub'){
+            var state = 1;
+            for (var Class2=0;Class2<ClassName.length;Class2++){
+                if(ClassName[Class2].checked == true){
+                    var state = 0;
+                }
+            }
+            if(state){
+                document.getElementById(id).checked=false;
+            }else{
+                document.getElementById(id).checked=true;
+            }
+        }
+
+        var obj = document.getElementsByName('permissions');
+        var value = '';
+        for (var i=0;i<obj.length;i++){
+            if(obj[i].checked == true){
+                value += obj[i].value+",";
+            }
+        }
+        value = value.substr(0,value.length-1);
+        document.getElementById('checkbox').value=value;
+    }
+</script>
+</body>
+</html>
